@@ -29,7 +29,7 @@ def get_request_headers(token):
 
 def get_id(url):
     urls = url.split("/")
-    return urls[4]
+    return urls[-1]
 
 
 
