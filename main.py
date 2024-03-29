@@ -1,10 +1,11 @@
 import gspread, requests
 from google.oauth2.service_account import Credentials
 from common import *
+from pathlib import Path
 
 def main():
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-    CREDENTIALS = Credentials.from_service_account_file("creds.json", scopes=SCOPES)
+    CREDENTIALS = Credentials.from_service_account_file(Path(__file__).parent / "creds.json", scopes=SCOPES)
 
     client = gspread.authorize(CREDENTIALS)
     sheet_id = "1B3wYLvuxOS3Ccr-mOckz_PFXt968fWB64PaoYVBEpN8"
