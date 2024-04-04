@@ -37,43 +37,43 @@ def get_cells_to_fill(profile):
     return [
         {
             "name": "id",
-            "value": profile.get("id")
+            "value": profile.get("id") if profile.get("id") else "/"
         },
         {
             "name": "first name",
-            "value": profile.get("firstName")
+            "value": profile.get("firstName") if profile.get("firstName") else "/"
         },
         {
             "name": "last name",
-            "value": profile.get("lastName")
+            "value": profile.get("lastName") if profile.get("lastName") else "/"
         },
         {
             "name": "company name",
-            "value": profile.get("companyName")
+            "value": profile.get("companyName") if profile.get("companyName") else "/"
         },
         {
             "name": "title",
-            "value": profile.get("title")
+            "value": profile.get("title") if profile.get("title") else "/"
         },
         {
             "name": "phones",
-            "value": ";".join(profile.get("phones")).replace("+", "")
+            "value": ";".join(profile.get("phones")).replace("+", "") if profile.get("phones") else "/"
         },
         {
             "name": "emails directs",
-            "value": ";".join(profile.get("directEmails"))
+            "value": ";".join(profile.get("directEmails")) if profile.get("directEmails") else "/"
         },
         {
             "name": "work emails",
-            "value": ";".join(profile.get("workEmails"))
+            "value": ";".join(profile.get("workEmails")) if profile.get("workEmails") else "/"
         },
         {
             "name": "emails",
-            "value": ";".join(list(map(lambda x: x.get("email"),profile.get("emails"))))
+            "value": ";".join(list(map(lambda x: x.get("email"),profile.get("emails")))) if profile.get("email") else "/"
         },
         {
             "name": "location",
-            "value": profile.get("location")
+            "value": profile.get("location") if profile.get("location") else "/"
         },
         {
             "name": "scrapped",
