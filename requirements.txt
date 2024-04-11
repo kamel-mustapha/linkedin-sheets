@@ -22,3 +22,4 @@ rsa==4.9
 StrEnum==0.4.15
 uritemplate==4.1.1
 urllib3==2.2.1
+selenium==4.19.0

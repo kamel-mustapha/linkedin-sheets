@@ -31,8 +31,6 @@ def get_id(url):
     urls = url.split("/")
     return urls[-1] if urls[-1] else urls[-2]
 
-
-
 def get_cells_to_fill(profile):
     return [
         {

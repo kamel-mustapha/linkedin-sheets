@@ -2,6 +2,7 @@ import gspread, requests, time
 from google.oauth2.service_account import Credentials
 from common import *
 from pathlib import Path
+from get_link import get_sales_url
 
 def main():
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -21,8 +22,11 @@ def main():
         try:
             if not url or index == 0 or "scrapped" in ";".join(sheet.row_values(index + 1)).lower():
                 continue
+            
+            row_url = get_sales_url(url) if 'TRUE' in " ".join(sheet.row_values(index + 1)) else url
+            
             req = requests.post("https://api.developers.kaspr.io/profile/linkedin", 
-                                json=get_request_body(get_id(url), names[index]), 
+                                json=get_request_body(get_id(row_url), names[index]), 
                                 headers=get_request_headers(api_key))
             if req.status_code == 200:
                 res = req.json()
