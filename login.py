@@ -19,3 +19,4 @@ def login(driver):
     fill_input(password, CREDS.get("password"))
     time.sleep(2)
     login_form.submit()
+    time.sleep(5)
