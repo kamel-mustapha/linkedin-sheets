@@ -29,7 +29,10 @@ def get_request_headers(token):
 
 def get_id(url):
     urls = url.split("/")
-    return urls[-1] if urls[-1] else urls[-2]
+    id_index = 0
+    for index, url in enumerate(urls):
+        if url == "in": id_index = index + 1
+    return urls[id_index]
 
 def get_cells_to_fill(profile):
     return [

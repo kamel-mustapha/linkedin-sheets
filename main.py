@@ -28,14 +28,18 @@ def main():
             req = requests.post("https://api.developers.kaspr.io/profile/linkedin", 
                                 json=get_request_body(get_id(row_url), names[index]), 
                                 headers=get_request_headers(api_key))
+
             if req.status_code == 200:
                 res = req.json()
-                profile = res.get("profile") if res.get("profile") else {}
-                cells_to_fill = get_cells_to_fill(profile)
+                profile = res.get("profile")
+                if profile:
+                    cells_to_fill = get_cells_to_fill(profile)
+                    for cell in cells_to_fill:
+                        sheet.update_cell(index + 1, headers.index(cell.get("name")) + 1, cell.get("value"))
+                        time.sleep(1)
+                else:
+                    sheet.update_cell(index + 1, headers.index("scrapped") + 1, "scrapped")
 
-                for cell in cells_to_fill:
-                    sheet.update_cell(index + 1, headers.index(cell.get("name")) + 1, cell.get("value"))
-            
             time.sleep(1)
         except Exception as e:
             print(e)
