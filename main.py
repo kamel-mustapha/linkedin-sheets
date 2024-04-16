@@ -36,11 +36,11 @@ def main():
                     cells_to_fill = get_cells_to_fill(profile)
                     for cell in cells_to_fill:
                         sheet.update_cell(index + 1, headers.index(cell.get("name")) + 1, cell.get("value"))
-                        time.sleep(1)
+                        time.sleep(2)
                 else:
                     sheet.update_cell(index + 1, headers.index("scrapped") + 1, "scrapped")
 
-            time.sleep(1)
+            time.sleep(5)
         except Exception as e:
             print(e)
 
