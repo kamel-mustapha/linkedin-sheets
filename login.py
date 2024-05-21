@@ -1,5 +1,6 @@
 import time, os, json
 from selenium.webdriver.common.by import By
+from pathlib import Path
 
 def fill_input(input, text, delay=0.5):
     for letter in text:
@@ -7,8 +8,8 @@ def fill_input(input, text, delay=0.5):
         time.sleep(delay)
 
 def login(driver):
-    CREDS = None
-    with open("./linkedin-creds.json", "r") as f:
+    # CREDS = None
+    with open(Path(__file__).parent / "linkedin-creds.json", "r") as f:
         CREDS = json.load(f)
     if not CREDS: return
     driver.get("https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin")
